@@ -19,7 +19,7 @@ class APICaller {
         "accept": "application/json",
         "Authorization": Constants.AuthKey
     ]
-    func getTrendingMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func getTrendingMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
         AF.request("https://api.themoviedb.org/3/trending/movie/day?language=en-US", headers: headers)
             .validate(statusCode: 200..<300)
             .response { response in
@@ -28,7 +28,7 @@ class APICaller {
                     if let data = response.data {
                         do {
                             let decoder = JSONDecoder()
-                            let trendingMoviesResponse = try decoder.decode(TrendingMoviesResponse.self, from: data)
+                            let trendingMoviesResponse = try decoder.decode(APIResponse.self, from: data)
                             completion(.success(trendingMoviesResponse.results))
                             
                         } catch {
@@ -45,7 +45,7 @@ class APICaller {
             }
     }
     
-    func getTrendingTV(completion: @escaping (Result<[TV], Error>) -> Void) {
+    func getTrendingTV(completion: @escaping (Result<[Title], Error>) -> Void) {
         
         AF.request("https://api.themoviedb.org/3/trending/tv/day?language=en-US", headers: headers)
             .validate(statusCode: 200..<300)
@@ -55,7 +55,7 @@ class APICaller {
                     if let data = response.data {
                         do {
                             let decoder = JSONDecoder()
-                            let trendingTVsResponse = try decoder.decode(TrendingTVsResponse.self, from: data)
+                            let trendingTVsResponse = try decoder.decode(APIResponse.self, from: data)
                             completion(.success(trendingTVsResponse.results))
                             
                         } catch {
@@ -72,7 +72,7 @@ class APICaller {
             }
     }
     
-    func getUpcoming(completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func getUpcoming(completion: @escaping (Result<[Title], Error>) -> Void) {
         AF.request("https://api.themoviedb.org/3/movie/upcoming", headers: headers)
             .validate(statusCode: 200..<300)
             .response { response in
@@ -81,7 +81,7 @@ class APICaller {
                     if let data = response.data {
                         do {
                             let decoder = JSONDecoder()
-                            let trendingMoviesResponse = try decoder.decode(TrendingMoviesResponse.self, from: data)
+                            let trendingMoviesResponse = try decoder.decode(APIResponse.self, from: data)
                             completion(.success(trendingMoviesResponse.results))
                             
                         } catch {
@@ -98,7 +98,7 @@ class APICaller {
             }
     }
     
-    func getPopularMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func getPopularMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
         AF.request("https://api.themoviedb.org/3/movie/popular", headers: headers)
             .validate(statusCode: 200..<300)
             .response { response in
@@ -107,7 +107,7 @@ class APICaller {
                     if let data = response.data {
                         do {
                             let decoder = JSONDecoder()
-                            let trendingMoviesResponse = try decoder.decode(TrendingMoviesResponse.self, from: data)
+                            let trendingMoviesResponse = try decoder.decode(APIResponse.self, from: data)
                             completion(.success(trendingMoviesResponse.results))
                             
                         } catch {
@@ -124,7 +124,7 @@ class APICaller {
             }
     }
     
-    func getTopRated(completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func getTopRated(completion: @escaping (Result<[Title], Error>) -> Void) {
         AF.request("https://api.themoviedb.org/3/movie/top_rated", headers: headers)
             .validate(statusCode: 200..<300)
             .response { response in
@@ -133,7 +133,7 @@ class APICaller {
                     if let data = response.data {
                         do {
                             let decoder = JSONDecoder()
-                            let trendingMoviesResponse = try decoder.decode(TrendingMoviesResponse.self, from: data)
+                            let trendingMoviesResponse = try decoder.decode(APIResponse.self, from: data)
                             completion(.success(trendingMoviesResponse.results))
                             
                         } catch {
