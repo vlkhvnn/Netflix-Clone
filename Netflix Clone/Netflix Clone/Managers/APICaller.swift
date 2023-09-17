@@ -15,12 +15,11 @@ struct Constants {
 
 class APICaller {
     static let shared = APICaller()
+    let headers: HTTPHeaders = [
+        "accept": "application/json",
+        "Authorization": Constants.AuthKey
+    ]
     func getTrendingMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
-        let headers: HTTPHeaders = [
-            "accept": "application/json",
-            "Authorization": Constants.AuthKey
-        ]
-        
         AF.request("https://api.themoviedb.org/3/trending/movie/day?language=en-US", headers: headers)
             .validate(statusCode: 200..<300)
             .response { response in
@@ -47,10 +46,6 @@ class APICaller {
     }
     
     func getTrendingTV(completion: @escaping (Result<[TV], Error>) -> Void) {
-        let headers: HTTPHeaders = [
-            "accept": "application/json",
-            "Authorization": Constants.AuthKey
-        ]
         
         AF.request("https://api.themoviedb.org/3/trending/tv/day?language=en-US", headers: headers)
             .validate(statusCode: 200..<300)
@@ -76,5 +71,82 @@ class APICaller {
                 }
             }
     }
-
+    
+    func getUpcoming(completion: @escaping (Result<[Movie], Error>) -> Void) {
+        AF.request("https://api.themoviedb.org/3/movie/upcoming", headers: headers)
+            .validate(statusCode: 200..<300)
+            .response { response in
+                switch response.result {
+                case .success:
+                    if let data = response.data {
+                        do {
+                            let decoder = JSONDecoder()
+                            let trendingMoviesResponse = try decoder.decode(TrendingMoviesResponse.self, from: data)
+                            completion(.success(trendingMoviesResponse.results))
+                            
+                        } catch {
+                            completion(.failure(error)) // Pass the error to the completion handler
+                        }
+                        
+                    } else {
+                        let error = NSError(domain: "ParsingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse JSON response"])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
+    
+    func getPopularMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
+        AF.request("https://api.themoviedb.org/3/movie/popular", headers: headers)
+            .validate(statusCode: 200..<300)
+            .response { response in
+                switch response.result {
+                case .success:
+                    if let data = response.data {
+                        do {
+                            let decoder = JSONDecoder()
+                            let trendingMoviesResponse = try decoder.decode(TrendingMoviesResponse.self, from: data)
+                            completion(.success(trendingMoviesResponse.results))
+                            
+                        } catch {
+                            completion(.failure(error)) // Pass the error to the completion handler
+                        }
+                        
+                    } else {
+                        let error = NSError(domain: "ParsingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse JSON response"])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
+    
+    func getTopRated(completion: @escaping (Result<[Movie], Error>) -> Void) {
+        AF.request("https://api.themoviedb.org/3/movie/top_rated", headers: headers)
+            .validate(statusCode: 200..<300)
+            .response { response in
+                switch response.result {
+                case .success:
+                    if let data = response.data {
+                        do {
+                            let decoder = JSONDecoder()
+                            let trendingMoviesResponse = try decoder.decode(TrendingMoviesResponse.self, from: data)
+                            completion(.success(trendingMoviesResponse.results))
+                            
+                        } catch {
+                            completion(.failure(error)) // Pass the error to the completion handler
+                        }
+                        
+                    } else {
+                        let error = NSError(domain: "ParsingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse JSON response"])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
 }
