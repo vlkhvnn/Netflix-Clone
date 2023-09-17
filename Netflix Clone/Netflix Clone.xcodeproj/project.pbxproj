@@ -22,6 +22,9 @@
 		7A647A8E2AB659F5004F3E7C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7A647A8D2AB659F5004F3E7C /* Alamofire */; };
 		7A647A902AB72918004F3E7C /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A647A8F2AB72918004F3E7C /* Title.swift */; };
 		7A647A922AB72C3B004F3E7C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A647A912AB72C3B004F3E7C /* Extensions.swift */; };
+		7A647A962AB79DDC004F3E7C /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A647A952AB79DDC004F3E7C /* TitleCollectionViewCell.swift */; };
+		7A647A992AB79F3B004F3E7C /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7A647A982AB79F3B004F3E7C /* SDWebImage */; };
+		7A647A9B2AB79F3B004F3E7C /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7A647A9A2AB79F3B004F3E7C /* SDWebImageMapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +44,7 @@
 		7A647A8A2AB6570D004F3E7C /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		7A647A8F2AB72918004F3E7C /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		7A647A912AB72C3B004F3E7C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7A647A952AB79DDC004F3E7C /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A647A992AB79F3B004F3E7C /* SDWebImage in Frameworks */,
+				7A647A9B2AB79F3B004F3E7C /* SDWebImageMapKit in Frameworks */,
 				7A647A8E2AB659F5004F3E7C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +112,7 @@
 			children = (
 				7A5713FC2AABCBD700223206 /* CollectionViewTableViewCell.swift */,
 				7A5713FE2AACEBC100223206 /* HeroHeaderUIView.swift */,
+				7A647A952AB79DDC004F3E7C /* TitleCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,6 +166,8 @@
 			name = "Netflix Clone";
 			packageProductDependencies = (
 				7A647A8D2AB659F5004F3E7C /* Alamofire */,
+				7A647A982AB79F3B004F3E7C /* SDWebImage */,
+				7A647A9A2AB79F3B004F3E7C /* SDWebImageMapKit */,
 			);
 			productName = "Netflix Clone";
 			productReference = 7A5713D72AABC54D00223206 /* Netflix Clone.app */;
@@ -190,6 +199,7 @@
 			mainGroup = 7A5713CE2AABC54D00223206;
 			packageReferences = (
 				7A647A8C2AB659F5004F3E7C /* XCRemoteSwiftPackageReference "Alamofire" */,
+				7A647A972AB79F3B004F3E7C /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 7A5713D82AABC54D00223206 /* Products */;
 			projectDirPath = "";
@@ -225,6 +235,7 @@
 				7A5713F62AABC76B00223206 /* DownloadsViewController.swift in Sources */,
 				7A5713DB2AABC54D00223206 /* AppDelegate.swift in Sources */,
 				7A647A922AB72C3B004F3E7C /* Extensions.swift in Sources */,
+				7A647A962AB79DDC004F3E7C /* TitleCollectionViewCell.swift in Sources */,
 				7A5713DD2AABC54D00223206 /* SceneDelegate.swift in Sources */,
 				7A5713F22AABC72900223206 /* UpcomingViewController.swift in Sources */,
 				7A647A902AB72918004F3E7C /* Title.swift in Sources */,
@@ -446,6 +457,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		7A647A972AB79F3B004F3E7C /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -453,6 +472,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7A647A8C2AB659F5004F3E7C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		7A647A982AB79F3B004F3E7C /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A647A972AB79F3B004F3E7C /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		7A647A9A2AB79F3B004F3E7C /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A647A972AB79F3B004F3E7C /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
