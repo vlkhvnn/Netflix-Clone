@@ -22,6 +22,7 @@
 		7A647A8E2AB659F5004F3E7C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7A647A8D2AB659F5004F3E7C /* Alamofire */; };
 		7A647A902AB72918004F3E7C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A647A8F2AB72918004F3E7C /* Movie.swift */; };
 		7A647A922AB72C3B004F3E7C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A647A912AB72C3B004F3E7C /* Extensions.swift */; };
+		7A647A942AB72E5A004F3E7C /* TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A647A932AB72E5A004F3E7C /* TV.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		7A647A8A2AB6570D004F3E7C /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		7A647A8F2AB72918004F3E7C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		7A647A912AB72C3B004F3E7C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7A647A932AB72E5A004F3E7C /* TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TV.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				7A647A8F2AB72918004F3E7C /* Movie.swift */,
+				7A647A932AB72E5A004F3E7C /* TV.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A5713F42AABC74000223206 /* SearchViewController.swift in Sources */,
+				7A647A942AB72E5A004F3E7C /* TV.swift in Sources */,
 				7A5713FD2AABCBD700223206 /* CollectionViewTableViewCell.swift in Sources */,
 				7A5713DF2AABC54D00223206 /* MainTabBarViewController.swift in Sources */,
 				7A647A8B2AB6570D004F3E7C /* APICaller.swift in Sources */,

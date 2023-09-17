@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let sectionTitles : [String] = ["Trending Movies", "Popular", "Trending TV", "Top Rated", "Upcoming Movies"]
+    let sectionTitles : [String] = ["Trending Movies", "Trending TV", "Popular", "Top Rated", "Upcoming Movies"]
     
     private let homeFeedTable: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -91,6 +91,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
         header.textLabel?.textColor = .white
+        header.textLabel?.text = header.textLabel?.text?.capitilizeFirstLetter()
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -45,5 +45,36 @@ class APICaller {
                 }
             }
     }
+    
+    func getTrendingTV(completion: @escaping (Result<[TV], Error>) -> Void) {
+        let headers: HTTPHeaders = [
+            "accept": "application/json",
+            "Authorization": Constants.AuthKey
+        ]
+        
+        AF.request("https://api.themoviedb.org/3/trending/tv/day?language=en-US", headers: headers)
+            .validate(statusCode: 200..<300)
+            .response { response in
+                switch response.result {
+                case .success:
+                    if let data = response.data {
+                        do {
+                            let decoder = JSONDecoder()
+                            let trendingTVsResponse = try decoder.decode(TrendingTVsResponse.self, from: data)
+                            completion(.success(trendingTVsResponse.results))
+                            
+                        } catch {
+                            completion(.failure(error)) // Pass the error to the completion handler
+                        }
+                        
+                    } else {
+                        let error = NSError(domain: "ParsingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse JSON response"])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
 
 }
