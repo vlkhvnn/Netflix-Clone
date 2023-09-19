@@ -175,4 +175,33 @@ class APICaller {
                 }
             }
     }
+    
+    func search(with query: String, completion: @escaping (Result<[Title], Error>) -> Void) {
+        
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+        
+        AF.request("https://api.themoviedb.org/3/search/movie?query=\(query)&api_key=\(Constants.API_KEY)", headers: headers)
+            .validate(statusCode: 200..<300)
+            .response { response in
+                switch response.result {
+                case .success:
+                    if let data = response.data {
+                        do {
+                            let decoder = JSONDecoder()
+                            let trendingMoviesResponse = try decoder.decode(APIResponse.self, from: data)
+                            completion(.success(trendingMoviesResponse.results))
+                            
+                        } catch {
+                            completion(.failure(error)) // Pass the error to the completion handler
+                        }
+                        
+                    } else {
+                        let error = NSError(domain: "ParsingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse JSON response"])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
 }
