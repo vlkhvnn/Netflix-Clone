@@ -149,4 +149,30 @@ class APICaller {
                 }
             }
     }
+    
+    func getDiscoverMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
+        AF.request("https://api.themoviedb.org/3/discover/movie", headers: headers)
+            .validate(statusCode: 200..<300)
+            .response { response in
+                switch response.result {
+                case .success:
+                    if let data = response.data {
+                        do {
+                            let decoder = JSONDecoder()
+                            let trendingMoviesResponse = try decoder.decode(APIResponse.self, from: data)
+                            completion(.success(trendingMoviesResponse.results))
+                            
+                        } catch {
+                            completion(.failure(error)) // Pass the error to the completion handler
+                        }
+                        
+                    } else {
+                        let error = NSError(domain: "ParsingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse JSON response"])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
 }
