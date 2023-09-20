@@ -30,6 +30,7 @@
 		7A647AA32AB96E32004F3E7C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A647AA22AB96E32004F3E7C /* SearchResultsViewController.swift */; };
 		7A647AA72ABB10DB004F3E7C /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A647AA62ABB10DB004F3E7C /* YoutubeSearchResponse.swift */; };
 		7A647AA92ABB4C3E004F3E7C /* TitlePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A647AA82ABB4C3E004F3E7C /* TitlePreviewViewController.swift */; };
+		7A647AAB2ABB54C2004F3E7C /* TitlePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A647AAA2ABB54C1004F3E7C /* TitlePreviewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		7A647AA22AB96E32004F3E7C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		7A647AA62ABB10DB004F3E7C /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
 		7A647AA82ABB4C3E004F3E7C /* TitlePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewController.swift; sourceTree = "<group>"; };
+		7A647AAA2ABB54C1004F3E7C /* TitlePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				7A647AA02AB8CBD0004F3E7C /* TitleViewModel.swift */,
+				7A647AAA2ABB54C1004F3E7C /* TitlePreviewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				7A647A962AB79DDC004F3E7C /* TitleCollectionViewCell.swift in Sources */,
 				7A647AA72ABB10DB004F3E7C /* YoutubeSearchResponse.swift in Sources */,
 				7A5713DD2AABC54D00223206 /* SceneDelegate.swift in Sources */,
+				7A647AAB2ABB54C2004F3E7C /* TitlePreviewViewModel.swift in Sources */,
 				7A5713F22AABC72900223206 /* UpcomingViewController.swift in Sources */,
 				7A647AA92ABB4C3E004F3E7C /* TitlePreviewViewController.swift in Sources */,
 				7A647A902AB72918004F3E7C /* Title.swift in Sources */,
