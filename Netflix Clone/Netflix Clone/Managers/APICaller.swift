@@ -11,7 +11,8 @@ struct Constants {
     static let API_KEY = "43ded7021f1ee5aef9956a51c88fc840"
     static let baseURL = "https://www.themoviedb.org"
     static let AuthKey = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0M2RlZDcwMjFmMWVlNWFlZjk5NTZhNTFjODhmYzg0MCIsInN1YiI6IjY1MDYxZWUzMzczYWMyMDBhY2Q2NTA2YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1ypeN4WnlmQvbnXGWI64bF5xcD1aGcLDCYF69Z6Xi2E"
-    static let googleAPI = "AIzaSyDDwUP9nKFeOJPaWnaNeLthbpoIDSBQeek"
+    static let YoutubeAPI_KEY = "AIzaSyDDwUP9nKFeOJPaWnaNeLthbpoIDSBQeek"
+    static let YoutubeBaseURL = "https://youtube.googleapis.com/youtube/v3/search?"
 }
 
 class APICaller {
@@ -206,29 +207,25 @@ class APICaller {
             }
     }
     
-    func getMovie(with query: String ) {
+    func getMovie(with query: String, completion: @escaping (Result<VideoElement, Error>) -> Void) {
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
-        AF.request("https://youtube.googleapis.com/youtube/v3/search?q=\(query)&key=\(Constants.googleAPI)")
-            .validate(statusCode: 200..<300)
-            .response { response in
-                switch response.result {
-                case .success:
-                    if let data = response.data {
-                        do {
-                            let result = try JSONSerialization.jsonObject(with: data)
-                            print(result)
-                        } catch {
-                            print(error.localizedDescription)
-                        }
-                        
-                    } else {
-                        let error = NSError(domain: "ParsingError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to parse JSON response"])
-                        print(error.localizedDescription)
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        guard let url = URL(string: "\(Constants.YoutubeBaseURL)q=\(query)&key=\(Constants.YoutubeAPI_KEY)") else {return}
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            guard let data = data, error == nil else {
+                return
             }
-
+            
+            do {
+                let results = try JSONDecoder().decode(YoutubeSearchResponse.self, from: data)
+                completion(.success(results.items[0]))
+                
+                
+            } catch {
+                completion(.failure(error))
+                print(error.localizedDescription)
+            }
+            
+        }
+        task.resume()
     }
 }
